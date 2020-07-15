@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Search, { SearchOptions } from '../../components/search/search';
 import DisplayList from '../../components/displayList/displayList';
+
+import { setApiData } from '../../redux-store/actions/apiDataActions';
 
 import classes from './manage-display.module.css';
 
@@ -20,7 +23,6 @@ function ManageDisplay(props) {
 	});
 
 	// Initially set results to null
-	const [resultList, setResultList] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [pagination, setPagination] = useState({
 		totalRecords: 0,
@@ -28,10 +30,12 @@ function ManageDisplay(props) {
 		currentPage: 1
 	});
 
+	const dispatch = useDispatch();
+
 	useEffect(() => {
+		const setStoreData = data => dispatch(setApiData(data));
 		// No need to proceed if search term not provided
 		if (!searchQuery.searchTerm) return;
-		setLoading(true);
 
 		// Set API dynamic query based on searchQuery
 		const url = API_URL.replace(SEARCH_TERM, searchQuery.searchTerm)
@@ -52,6 +56,17 @@ function ManageDisplay(props) {
 					restaurants
 				} = response;
 
+				// Prepare object from as many properties as required in the app
+				setStoreData(
+					restaurants.map(r => ({
+						id: r.id,
+						name: r.name,
+						address: r.address,
+						city: r.city,
+						image_url: r.image_url
+					}))
+				);
+
 				// Set values for pagination based on records fetched
 				setPagination({
 					totalRecords,
@@ -61,23 +76,12 @@ function ManageDisplay(props) {
 
 				// Set loading to false when promise is resolved
 				setLoading(false);
-
-				// Prepare object from as many properties as required in the app
-				setResultList(
-					restaurants.map(r => ({
-						id: r.id,
-						name: r.name,
-						address: r.address,
-						city: r.city,
-						image_url: r.image_url
-					}))
-				);
 			})
 			.catch(error => {
+				// Reset results when error occurs
+				setStoreData([]);
 				// Set loading to false when promise is rejected
 				setLoading(false);
-				// Reset results when error occurs
-				setResultList([]);
 				// Reset pagination
 				setPagination({
 					totalRecords: 0,
@@ -87,12 +91,13 @@ function ManageDisplay(props) {
 				// Log the error
 				console.error(error);
 			});
-	}, [searchQuery]);
+	}, [searchQuery, dispatch]);
 
 	// Updating searchQuery state will cause re-render,
 	// which in turn will re - evaluate useEffect for execution
 	// useEffect has deps of searchQuery, so it will execute again
 	const onClickHandler = searchObject => {
+		setLoading(true);
 		setSearchQuery(searchObject);
 	};
 
@@ -105,7 +110,7 @@ function ManageDisplay(props) {
 			{loading ? (
 				<p>Please wait while we fetch your search results...</p>
 			) : (
-				<DisplayList resultList={resultList} />
+				<DisplayList />
 			)}
 		</div>
 	);

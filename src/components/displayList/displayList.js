@@ -1,19 +1,22 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import DisplayItem from './displayItem/displayItem';
 
 import classes from './displayList.module.css';
 
-function DisplayList({ resultList }) {
+function DisplayList(props) {
+	// "useSelector" is equivalent to "connect" + "mapStateToProps"
+	const state = useSelector(state => state.apiData);
+	const { records } = state;
+
 	// Initial value before search initiated
 	let result = null;
 
-	if (resultList) {
+	if (records) {
 		// Search returned at least one record
-		if (resultList.length) {
-			result = resultList.map(result => (
-				<DisplayItem key={result.id} {...result} />
-			));
+		if (records.length) {
+			result = records.map(result => <DisplayItem key={result.id} {...result} />);
 		} else {
 			// Search returned 0 records
 			result = 'No records found!';
