@@ -1,0 +1,10 @@
+.Container {
+	display: flex;
+	flex-direction: column;
+}
+
+@media (max-width: 500px) {
+	.Container {
+		align-items: center;
+	}
+}

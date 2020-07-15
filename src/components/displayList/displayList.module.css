@@ -1,9 +1,4 @@
-.Container {
-	display: flex;
-	flex-direction: column;
-}
-
-.DisplayLayout {
+.DisplayList {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -11,11 +6,7 @@
 }
 
 @media (max-width: 500px) {
-	.Container {
-		align-items: center;
-	}
-
-	.DisplayLayout {
+	.DisplayList {
 		width: 90%;
 		padding: 0;
 	}
