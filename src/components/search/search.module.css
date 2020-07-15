@@ -1,0 +1,55 @@
+.Container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	box-shadow: 0 4px 6px -2px grey;
+	padding: 30px;
+	border-top: 1px lightgrey solid;
+	margin: 25px;
+	margin-top: 5px;
+}
+
+.InputContainer {
+	margin-right: 23px;
+}
+
+.InputContainer input,
+select {
+	min-width: 100px;
+	display: block;
+	outline: none;
+	border: 1px solid #ccc;
+	background-color: white;
+	font: inherit;
+	padding: 6px 10px;
+	box-sizing: border-box;
+	margin-top: 5px;
+}
+
+.InputContainer button {
+	margin-top: 14px;
+	width: 150px;
+}
+
+@media (max-width: 500px) {
+	.Container {
+		flex-direction: column;
+		padding: 20px;
+		margin-bottom: 30px;
+		width: 75vw;
+	}
+
+	.InputContainer button {
+		width: 100%;
+	}
+
+	.InputContainer {
+		margin-right: 0;
+	}
+
+	.InputContainer input,
+	select {
+		padding: 15px;
+		width: 100%;
+	}
+}
