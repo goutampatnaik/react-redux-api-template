@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Search, { SearchOptions } from '../../components/search/search';
 import DisplayList from '../../components/displayList/displayList';
 
-import { setApiData } from '../../redux-store/actions/apiDataActions';
+import { setApiData } from '../../redux-store/actions';
 
 import classes from './manage-display.module.css';
 
@@ -22,7 +22,6 @@ function ManageDisplay(props) {
 		resultsPerPage: SearchOptions.resultsPerPage[0]
 	});
 
-	// Initially set results to null
 	const [loading, setLoading] = useState(false);
 	const [pagination, setPagination] = useState({
 		totalRecords: 0,
@@ -31,9 +30,21 @@ function ManageDisplay(props) {
 	});
 
 	const dispatch = useDispatch();
+	// Handle response from api
+	const fetchResponseHandler = useCallback(
+		(data, loading, pagination) => {
+			const setStoreData = data => dispatch(setApiData(data));
+			// Reset results when error occurs
+			setStoreData(data);
+			// Set loading to false when promise is rejected
+			setLoading(loading);
+			// Reset pagination
+			setPagination(pagination);
+		},
+		[dispatch]
+	);
 
 	useEffect(() => {
-		const setStoreData = data => dispatch(setApiData(data));
 		// No need to proceed if search term not provided
 		if (!searchQuery.searchTerm) return;
 
@@ -48,55 +59,40 @@ function ManageDisplay(props) {
 			.then(response => {
 				if (response.error) throw Error(response.error);
 
-				// Read values from response
-				const {
-					total_entries: totalRecords,
-					per_page: perPage,
-					current_page: currentPage,
-					restaurants
-				} = response;
-
-				// Prepare object from as many properties as required in the app
-				setStoreData(
-					restaurants.map(r => ({
+				fetchResponseHandler(
+					response.restaurants.map(r => ({
 						id: r.id,
 						name: r.name,
 						address: r.address,
 						city: r.city,
 						image_url: r.image_url
-					}))
+					})),
+					false,
+					{
+						totalRecords: response.total_entries,
+						perPage: response.per_page,
+						currentPage: response.current_page
+					}
 				);
-
-				// Set values for pagination based on records fetched
-				setPagination({
-					totalRecords,
-					perPage,
-					currentPage
-				});
-
-				// Set loading to false when promise is resolved
-				setLoading(false);
 			})
 			.catch(error => {
-				// Reset results when error occurs
-				setStoreData([]);
-				// Set loading to false when promise is rejected
-				setLoading(false);
-				// Reset pagination
-				setPagination({
+				fetchResponseHandler([], false, {
 					totalRecords: 0,
 					perPage: SearchOptions.resultsPerPage[0],
 					currentPage: 1
 				});
+
 				// Log the error
 				console.error(error);
 			});
-	}, [searchQuery, dispatch]);
+	}, [searchQuery, fetchResponseHandler]);
 
 	// Updating searchQuery state will cause re-render,
 	// which in turn will re - evaluate useEffect for execution
 	// useEffect has deps of searchQuery, so it will execute again
 	const onClickHandler = searchObject => {
+		// Adding setLoading(true) to prevent unnecessary render of DisplayList
+		// instead, it renders the loading message
 		setLoading(true);
 		setSearchQuery(searchObject);
 	};
