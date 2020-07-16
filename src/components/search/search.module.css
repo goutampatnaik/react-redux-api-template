@@ -39,12 +39,12 @@ select {
 		width: 75vw;
 	}
 
-	.InputContainer button {
-		width: 100%;
-	}
-
 	.InputContainer {
 		margin-right: 0;
+	}
+
+	.InputContainer button {
+		width: 100%;
 	}
 
 	.InputContainer input,

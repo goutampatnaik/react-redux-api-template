@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import ManageDisplay from './containers/manage-display/manage-display';
+import ManageDisplay from './containers/manageSearch/manageSearch';
 
 function App() {
 	return (

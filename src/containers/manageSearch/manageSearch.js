@@ -6,7 +6,7 @@ import DisplayList from '../../components/displayList/displayList';
 
 import { setApiData } from '../../redux-store/actions';
 
-import classes from './manage-display.module.css';
+import classes from './manageSearch.module.css';
 
 // API
 const SEARCH_TERM = 'SEARCH_TERM';
