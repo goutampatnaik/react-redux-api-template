@@ -1,0 +1,69 @@
+.FavoritesContainer {
+	position: fixed;
+	top: 70px;
+	left: calc(50% - 115px);
+	z-index: 10;
+	width: 400px;
+	max-height: 70vh;
+	overflow: auto;
+	background-color: rgb(245, 239, 239);
+	opacity: 0.95;
+	padding: 10px 0;
+	border: 1px solid lightgrey;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.5);
+}
+
+.FavoritesContainer li {
+	display: flex;
+	flex-direction: row;
+	padding: 15px;
+	margin-right: 40px;
+	margin-bottom: 15px;
+	border-radius: 2px;
+	border-left: 6px solid #40a4f4;
+	border-top: solid 1px lightgrey;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+	list-style: none;
+	text-align: left;
+	background-color: white;
+}
+
+.Name,
+.Address,
+.City {
+	display: block;
+	font-size: 0.8rem;
+	line-height: 1rem;
+}
+
+.Name {
+	font-size: 1rem;
+	margin-bottom: 0.8rem;
+}
+
+.RemoveButton {
+	padding-left: 12px;
+	cursor: pointer;
+	font-size: 1.7rem;
+	margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+	.FavoritesContainer {
+		width: 100%;
+		left: 0;
+	}
+
+	.Name,
+	.Address,
+	.City {
+		font-size: 1rem;
+		line-height: 1rem;
+	}
+
+	.Name {
+		font-size: 1.3rem;
+		line-height: 1.1rem;
+		margin-bottom: 1.1rem;
+	}
+}

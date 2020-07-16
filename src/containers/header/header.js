@@ -1,52 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import classes from './header.module.css';
+
+import FavoriteItems from '../../components/favoriteItems/favoriteItems';
 import Button from '../../components/ui/button/button';
 
 const Header = () => {
 	const [toggleShow, setToggleShow] = useState(false);
+
 	const { favoriteItems } = useSelector(state => state.favoritesData);
+	const itemCount = favoriteItems.length;
+
+	useEffect(() => {
+		setToggleShow(prevState => prevState && itemCount > 0);
+	}, [itemCount]);
 
 	return (
 		<>
 			<div className={classes.Header}>
-				<span style={{ textAlign: 'left', width: '85%' }}>
+				<div className={classes.HeaderText}>
 					<h3>Search API Template with Redux</h3>
-				</span>
-				<span
-					style={{
-						width: 'auto',
-						marginTop: '10px'
-					}}>
+				</div>
+				<div className={classes.ButtonContainer}>
 					<Button
-						disabled={!favoriteItems.length}
+						alt
+						disabled={!itemCount}
 						onClickHandler={() => {
 							setToggleShow(prevState => !prevState);
 						}}>
 						{/* <FontAwesomeIcon icon={['far', 'heart']} /> */}
-						<span>{favoriteItems.length}</span>
+						<span>{itemCount}</span>
 					</Button>
-				</span>
+				</div>
 			</div>
 
-			{toggleShow ? (
-				<div
-					className={classes.FavoritesContainer}
-					onClick={() => {
-						setToggleShow(prevState => !prevState);
-					}}>
-					<ul>
-						{favoriteItems.map(item => (
-							<li key={item.id}>
-								<label className={classes.Name}>{item.name}</label>
-								<label className={classes.Address}>{item.address}</label>
-								<label className={classes.City}>{item.city}</label>
-							</li>
-						))}
-					</ul>
-				</div>
-			) : null}
+			{toggleShow ? <FavoriteItems favoriteItems={favoriteItems} /> : null}
 		</>
 	);
 };
