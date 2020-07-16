@@ -5,7 +5,7 @@ import favoritesReducer from './reducers/favoritesReducer';
 
 const rootReducer = combineReducers({
 	apiData: apiDataReducer,
-	favorites: favoritesReducer
+	favoritesData: favoritesReducer
 });
 
 const store = createStore(rootReducer);

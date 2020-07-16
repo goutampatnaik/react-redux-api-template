@@ -8,19 +8,6 @@
 	height: 220px;
 }
 
-.Name,
-.Address,
-.City {
-	display: block;
-	font-size: 0.8rem;
-	line-height: 1rem;
-}
-
-.Name {
-	font-size: 1rem;
-	margin-bottom: 0.8rem;
-}
-
 .Img {
 	width: 100%;
 	height: 100%;
@@ -37,6 +24,34 @@
 	padding: 10px;
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px;
+}
+
+.Button {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 15px;
+	width: 96%;
+	margin: 4px;
+	background-color: #28a745;
+	color: white;
+	border: 1px solid white;
+	box-shadow: 0 4px 6px -3px grey;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.Name,
+.Address,
+.City {
+	display: block;
+	font-size: 0.8rem;
+	line-height: 1rem;
+}
+
+.Name {
+	font-size: 1rem;
+	margin-bottom: 0.8rem;
 }
 
 @media (max-width: 500px) {
