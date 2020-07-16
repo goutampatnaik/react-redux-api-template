@@ -4,24 +4,41 @@
 	color: white;
 	cursor: pointer;
 	font: inherit;
-	padding: 13px;
-	/* margin: 10px 20px; */
+	padding: 10px 15px;
 	box-shadow: 0 4px 6px -3px grey;
-	min-width: 20%;
+	/* min-width: 20%; */
 	border-radius: 3px;
 	box-sizing: border-box;
+}
+
+.Alt {
+	background-color: darkslategrey;
+	border: solid 1px darkslategrey;
 }
 
 .Button:hover,
 .Button:active {
 	background-color: #0366d6;
-	outline: none;
+}
+
+.Button:disabled {
+	cursor: default;
+	background-color: transparent;
+	border: none;
+}
+
+.Button:disabled:hover {
+	cursor: default;
+}
+
+.Alt:hover,
+.Alt:active {
+	background-color: darkslategrey;
 }
 
 @media (max-width: 500px) {
 	.Button {
 		padding: 15px;
-		/* margin: 0; */
 		margin-top: 15px;
 		width: 100%;
 	}

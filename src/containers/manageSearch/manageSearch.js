@@ -14,7 +14,7 @@ const PAGE_NUMBER = 'PAGE_NUMBER';
 const RESULTS_PER_PAGE = 'RESULTS_PER_PAGE';
 const API_URL = `https://opentable.herokuapp.com/api/restaurants?city=${SEARCH_TERM}&per_page=${RESULTS_PER_PAGE}&page=${PAGE_NUMBER}`;
 
-function ManageDisplay(props) {
+function ManageSearch(props) {
 	// Read default values from configured options
 	const [searchQuery, setSearchQuery] = useState({
 		searchTerm: SearchOptions.searchTerm,
@@ -99,10 +99,12 @@ function ManageDisplay(props) {
 
 	return (
 		<div className={classes.Container}>
+			<p>Enter name of a city and click Search to view a list of restaurants.</p>
 			<Search
 				clickHandler={onClickHandler}
 				totalRecords={pagination.totalRecords}
 			/>
+
 			{loading ? (
 				<p>Please wait while we fetch your search results...</p>
 			) : (
@@ -112,4 +114,4 @@ function ManageDisplay(props) {
 	);
 }
 
-export default ManageDisplay;
+export default ManageSearch;

@@ -11,7 +11,7 @@ function DisplayItem({ onClickHandler, ...props }) {
 			<button
 				className={classes.Button}
 				onClick={() => onClickHandler({ ...props })}>
-				{isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+				{isFavorite ? 'Remove' : 'Add'}
 			</button>
 			<div className={classes.Info}>
 				<label className={classes.Name}>{name}</label>
