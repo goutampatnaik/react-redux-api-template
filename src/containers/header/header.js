@@ -9,11 +9,14 @@ import Button from '../../components/ui/button/button';
 const Header = () => {
 	const [toggleShow, setToggleShow] = useState(false);
 
+	// Read favorites list from redux store
 	const { favoriteItems } = useSelector(state => state.favoritesData);
 	const itemCount = favoriteItems.length;
 
 	useEffect(() => {
-		setToggleShow(prevState => prevState && itemCount > 0);
+		// Set toggle show to false when favoriteItems
+		// is empty (all the items have been removed)
+		setToggleShow(prevState => prevState && itemCount);
 	}, [itemCount]);
 
 	return (
@@ -35,7 +38,7 @@ const Header = () => {
 				</div>
 			</div>
 
-			{toggleShow ? <FavoriteItems favoriteItems={favoriteItems} /> : null}
+			<FavoriteItems show={toggleShow} favoriteItems={favoriteItems} />
 		</>
 	);
 };
