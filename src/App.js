@@ -8,7 +8,9 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<div style={{ height: '50px' }}></div>
+			{/* This is just a filler to push the main content down to prevent
+      any part being hidden behind the header which has fixed position */}
+			<div className="filler"></div>
 			<ManageSearch />
 		</div>
 	);

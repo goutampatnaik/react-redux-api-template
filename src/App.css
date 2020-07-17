@@ -12,6 +12,10 @@ p {
 	margin-left: 20px;
 }
 
+.filler {
+	height: 50px;
+}
+
 @media (max-width: 500px) {
 	.App {
 		width: 90%;

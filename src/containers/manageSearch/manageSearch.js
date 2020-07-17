@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import Search, { SearchOptions } from '../../components/search/search';
 import DisplayList from '../../components/displayList/displayList';
 
-import { setApiData } from '../../redux-store/actions';
+import { saveApiResponseToStore } from '../../redux-store/actions';
 
 import classes from './manageSearch.module.css';
 
-// API
+// API url
 const SEARCH_TERM = 'SEARCH_TERM';
 const PAGE_NUMBER = 'PAGE_NUMBER';
 const RESULTS_PER_PAGE = 'RESULTS_PER_PAGE';
@@ -22,23 +22,25 @@ function ManageSearch(props) {
 		resultsPerPage: SearchOptions.resultsPerPage[0]
 	});
 
+	// Maintain state to show/hide loading indicator
 	const [loading, setLoading] = useState(false);
+
+	// Maintain state for pagination
 	const [pagination, setPagination] = useState({
 		totalRecords: 0,
 		perPage: SearchOptions.resultsPerPage[0],
 		currentPage: 1
 	});
 
+	// "useDispatch" can be used instead of "connect" + "mapDispatchToProps"
 	const dispatch = useDispatch();
+
 	// Handle response from api
 	const fetchResponseHandler = useCallback(
 		(data, loading, pagination) => {
-			const setStoreData = data => dispatch(setApiData(data));
-			// Reset results when error occurs
-			setStoreData(data);
-			// Set loading to false when promise is rejected
+			// Reset state on receiving response from API
+			dispatch(saveApiResponseToStore(data));
 			setLoading(loading);
-			// Reset pagination
 			setPagination(pagination);
 		},
 		[dispatch]
@@ -88,11 +90,11 @@ function ManageSearch(props) {
 	}, [searchQuery, fetchResponseHandler]);
 
 	// Updating searchQuery state will cause re-render,
-	// which in turn will re - evaluate useEffect for execution
+	// which in turn will re-evaluate useEffect for execution
 	// useEffect has deps of searchQuery, so it will execute again
 	const onClickHandler = searchObject => {
-		// Adding setLoading(true) to prevent unnecessary render of DisplayList
-		// instead, it renders the loading message
+		// Adding setLoading(true) here to prevent unnecessary render
+		// of DisplayList. Instead, it renders the loading message
 		setLoading(true);
 		setSearchQuery(searchObject);
 	};
@@ -104,7 +106,6 @@ function ManageSearch(props) {
 				clickHandler={onClickHandler}
 				totalRecords={pagination.totalRecords}
 			/>
-
 			{loading ? (
 				<p>Please wait while we fetch your search results...</p>
 			) : (

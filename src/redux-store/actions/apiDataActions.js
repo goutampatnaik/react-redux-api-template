@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-export function setApiData(data) {
+export function saveApiResponseToStore(data) {
 	return {
 		type: actionTypes.SET_API_DATA,
 		payload: data

@@ -7,8 +7,11 @@ import classes from './favoriteItems.module.css';
 
 function FavoriteItems({ favoriteItems, show }) {
 	// Remove item from favorites list
-	// via redux action dispatch
+	// "useDispatch" can be used instead of "connect" + "mapDispatchToProps"
 	const dispatch = useDispatch();
+	// Creating a local function like this is optional.
+	// You can also directly call dispatch(actioncreator())
+	// I prefer this extra layer of abstraction
 	const removeFavorite = id => dispatch(removeFromFavorites(id));
 
 	return (
@@ -24,7 +27,7 @@ function FavoriteItems({ favoriteItems, show }) {
 							</div>
 							<div
 								className={classes.RemoveButton}
-								onClick={() => dispatch(removeFavorite(item.id))}>
+								onClick={() => removeFavorite(item.id)}>
 								&#10005;
 							</div>
 						</div>
