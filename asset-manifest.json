@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-redux-api-template/static/css/main.69541ff9.chunk.css",
+    "main.css": "/react-redux-api-template/static/css/main.75a224fb.chunk.css",
     "main.js": "/react-redux-api-template/static/js/main.e959b3ef.chunk.js",
     "main.js.map": "/react-redux-api-template/static/js/main.e959b3ef.chunk.js.map",
     "runtime-main.js": "/react-redux-api-template/static/js/runtime-main.1001a5cd.js",
@@ -8,15 +8,15 @@
     "static/js/2.f038725b.chunk.js": "/react-redux-api-template/static/js/2.f038725b.chunk.js",
     "static/js/2.f038725b.chunk.js.map": "/react-redux-api-template/static/js/2.f038725b.chunk.js.map",
     "index.html": "/react-redux-api-template/index.html",
-    "precache-manifest.845db35c57c8278693b1f1ac6c71b628.js": "/react-redux-api-template/precache-manifest.845db35c57c8278693b1f1ac6c71b628.js",
+    "precache-manifest.1f0b661951e7ec49bb00158adc6930a5.js": "/react-redux-api-template/precache-manifest.1f0b661951e7ec49bb00158adc6930a5.js",
     "service-worker.js": "/react-redux-api-template/service-worker.js",
-    "static/css/main.69541ff9.chunk.css.map": "/react-redux-api-template/static/css/main.69541ff9.chunk.css.map",
+    "static/css/main.75a224fb.chunk.css.map": "/react-redux-api-template/static/css/main.75a224fb.chunk.css.map",
     "static/js/2.f038725b.chunk.js.LICENSE.txt": "/react-redux-api-template/static/js/2.f038725b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1001a5cd.js",
     "static/js/2.f038725b.chunk.js",
-    "static/css/main.69541ff9.chunk.css",
+    "static/css/main.75a224fb.chunk.css",
     "static/js/main.e959b3ef.chunk.js"
   ]
 }
