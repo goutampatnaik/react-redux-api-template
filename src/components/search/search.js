@@ -11,7 +11,7 @@ export const SearchOptions = {
 	pageNumber: 1
 };
 
-function Search({ totalRecords, clickHandler }) {
+function Search({ title, totalRecords, clickHandler, searchTermHint }) {
 	const searchTermRef = useRef('');
 	const resultsPerPageRef = useRef(0);
 	const pageNumberRef = useRef(0);
@@ -42,37 +42,31 @@ function Search({ totalRecords, clickHandler }) {
 
 	return (
 		<form className={classes.Container}>
+			<p className={classes.Title}>{title}</p>
 			<div className={classes.InputContainer}>
-				<label htmlFor="search-term">Search Term</label>
 				<input
 					name="search-term"
 					className={classes.TextInput}
 					ref={searchTermRef}
-					placeholder="enter city name"
+					placeholder={searchTermHint}
 				/>
-			</div>
-			<div className={classes.InputContainer}>
-				<label htmlFor="per-page">Per page</label>
 				<select
 					name="per-page"
 					ref={resultsPerPageRef}
 					onChange={() => setPages([])}>
 					{SearchOptions.resultsPerPage.map((item, index) => (
 						<option key={index} value={item}>
-							{item}
+							{`Per page ${item}`}
 						</option>
 					))}
 				</select>
-			</div>
-			<div className={classes.InputContainer}>
-				<label htmlFor="go-to-page">Go to Page</label>
 				<select
 					name="go-to-page"
 					ref={pageNumberRef}
 					disabled={pages.length === 0}>
 					{pages.map((item, index) => (
 						<option key={index} value={item}>
-							{item}
+							{`Page ${item}`}
 						</option>
 					))}
 				</select>

@@ -101,8 +101,9 @@ function ManageSearch(props) {
 
 	return (
 		<div className={classes.Container}>
-			<p>Enter name of a city and click Search to view a list of restaurants.</p>
 			<Search
+				title="Enter name of a city and click Search to view a list of restaurants."
+				searchTermHint="enter name of city"
 				clickHandler={onClickHandler}
 				totalRecords={pagination.totalRecords}
 			/>

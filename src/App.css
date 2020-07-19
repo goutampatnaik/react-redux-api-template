@@ -1,19 +1,11 @@
 .App {
-	width: 50%;
-	box-shadow: 0 4px 6px 0 black;
+	width: 85%;
 	margin: auto;
-	padding: 20px;
-	min-height: 94vh;
 	background-color: white;
 }
 
-.App > h2,
-p {
-	margin-left: 20px;
-}
-
 .filler {
-	height: 50px;
+	height: 70px;
 }
 
 @media (max-width: 500px) {

@@ -1,8 +1,15 @@
+.Container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10px;
+}
+
 .DisplayList {
+	width: 97%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	padding-left: 15px;
 }
 
 @media (max-width: 500px) {

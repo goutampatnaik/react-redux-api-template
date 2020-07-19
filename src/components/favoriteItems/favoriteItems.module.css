@@ -1,7 +1,7 @@
 .Container {
 	position: fixed;
 	top: 70px;
-	left: calc(50% - 60px);
+	right: calc(17%);
 	z-index: 10;
 	width: 350px;
 	max-height: 80vh;
@@ -9,12 +9,14 @@
 	padding: 0;
 	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.5);
 	opacity: 1;
-	transition: opacity ease 0.1s, transform ease 0.2s;
+	/* change these values for desired transition effects*/
+	transition: opacity ease-in-out 0.3s, transform ease 0.4s;
 }
 
 .Hide {
-	opacity: 0;
-	transform: scale(0) translate(100%, -100%);
+	/* change these values for desired transition effects*/
+	opacity: 1;
+	transform: scaleY(1) translate(0, -150vh);
 }
 
 ul,

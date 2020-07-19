@@ -3,45 +3,53 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	box-shadow: 0 4px 6px -2px grey;
-	padding: 30px;
-	border-top: 1px lightgrey solid;
-	margin: 25px;
-	margin-top: 5px;
+	padding: 10px 0 10px 25px;
+	border-radius: 2px;
+	margin: 0 20px;
 }
 
 .InputContainer {
-	margin-right: 23px;
+	padding-left: 5px;
+	padding-bottom: 10px;
+}
+
+.Title {
+	width: 100%;
+	margin-left: 10px;
 }
 
 .InputContainer input,
 select {
-	min-width: 70px;
-	display: block;
+	width: 150px;
 	outline: none;
 	border: 1px solid #ccc;
 	background-color: white;
 	font: inherit;
 	padding: 6px 10px;
 	box-sizing: border-box;
-	margin-top: 5px;
+	margin: 0 25px 10px 10px;
+	border-radius: 2px;
 }
 
 .InputContainer button {
-	margin-top: 20px;
-	/* padding: 10px; */
+	margin-top: -5px;
 	width: 120px;
 }
 
 @media (max-width: 500px) {
 	.Container {
 		flex-direction: column;
-		padding: 20px;
-		margin-bottom: 30px;
-		width: 75vw;
+		padding: 0;
+		margin-bottom: 10px;
+		width: 80vw;
+		box-shadow: none;
 	}
 
 	.InputContainer {
-		margin-right: 0;
+		margin-right: 10px;
+		padding-left: 0;
+		padding-bottom: 0;
+		margin-top: 10px;
 	}
 
 	.InputContainer button {
@@ -52,5 +60,7 @@ select {
 	select {
 		padding: 15px;
 		width: 100%;
+		margin-left: 0;
+		margin-bottom: 10px;
 	}
 }

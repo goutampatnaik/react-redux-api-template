@@ -1,14 +1,19 @@
-.Header {
+.Container {
 	position: fixed;
 	z-index: 10;
+	background-color: #292927;
+	width: 100%;
+	top: 0;
+}
+
+.Header {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: flex-start;
-	top: 0;
+	justify-content: space-around;
 	text-align: right;
-	width: 47%;
-	background-color: darkslategrey;
+	width: 70%;
+	margin: 0 auto;
 	color: white;
 	padding: 5px 20px;
 }

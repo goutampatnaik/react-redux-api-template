@@ -20,7 +20,7 @@ const Header = () => {
 	}, [itemCount]);
 
 	return (
-		<>
+		<div className={classes.Container}>
 			<div className={classes.Header}>
 				<div className={classes.HeaderText}>
 					<h3>Search API Template with Redux</h3>
@@ -39,7 +39,7 @@ const Header = () => {
 			</div>
 
 			<FavoriteItems show={toggleShow} favoriteItems={favoriteItems} />
-		</>
+		</div>
 	);
 };
 

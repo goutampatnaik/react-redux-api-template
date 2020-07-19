@@ -47,7 +47,11 @@ function DisplayList(props) {
 		}
 	}
 
-	return <div className={classes.DisplayList}>{result}</div>;
+	return (
+		<div className={classes.Container}>
+			<div className={classes.DisplayList}>{result}</div>
+		</div>
+	);
 }
 
 export default DisplayList;
